@@ -1,0 +1,271 @@
+﻿<div ng-controller="DisplayController">
+    <link rel="shortcut icon" src="../../Content/img/carlogo-white.png" />
+    <div class="row">
+        <div class="col-xs-12" style="text-align:center; margin-top:30px;">
+            <img src="../../Content/img/carlogo-white.png" class="logo" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5" style="text-align:center; margin-top:12px;">
+            <h2>Find the car of your dreams!</h2>
+        </div>
+        <div class="col-sm-7">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-5">
+                            <h3 style="text-align:left; margin:12px 0px 0px 0px; text-wrap:none">Select Year:</h3>
+                        </div>
+                        <div class="col-xs-4">
+                            <select ng-model="selected.year" ng-options="year for year in years" ng-change="yearChange()" class="form-control"><option value="" disabled class="text-muted">{{yearPlaceholder}}</option></select>
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-5">
+                            <h3 ng-hide="makeHide" style="text-align:left; margin:12px 0px 0px 0px; text-wrap:none">Select Make:</h3>
+                        </div>
+                        <div class="col-xs-4">
+                            <select ng-model="selected.make" ng-options="make for make in makes" ng-change="makeChange()" ng-hide="makeHide" class="form-control"><option value="" disabled class="text-muted">{{makePlaceholder}}</option></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-5">
+                            <h3 ng-hide="modelHide" style="text-align:left; margin:12px 0px 0px 0px; text-wrap:none">Select Model:</h3>
+                        </div>
+                        <div class="col-xs-4">
+                            <select ng-model="selected.model" ng-options="model for model in models" ng-change="modelChange()" ng-hide="modelHide" class="form-control"><option value="" disabled class="text-muted">{{modelPlaceholder}}</option></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-1"></div>
+                        <div class="col-xs-5">
+                            <h3 ng-hide="trimHide" style="text-align:left; margin:12px 0px 0px 0px; text-wrap:none">Select Trim:</h3>
+                        </div>
+                        <div class="col-xs-4">
+                            <select ng-model="selected.trim" ng-options="trim for trim in trims" ng-change="trimChange()" ng-hide="trimHide" class="form-control"><option value="" disabled class="text-muted">{{trimPlaceholder}}</option></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:20px">
+        <div id="stats">
+            <div class="col-xs-12" style="text-align:center; margin-bottom:20px">
+                <h2 style="display:inline; margin-left:3px; margin-right:3px" class="text-center text-primary" ng-hide="yearHide">{{selected.year | filter:noEquals}}</h2>
+                <h2 style="display:inline; margin-left:3px; margin-right:3px" class="text-center text-primary" ng-hide="modelHide">{{selected.make | filter:noEquals}}</h2>
+                <h2 style="display:inline; margin-left:3px; margin-right:3px" class="text-center text-primary" ng-hide="trimHide">{{selected.model | filter:noEquals}}</h2>
+                <h2 style="display:inline; margin-left:3px; margin-right:3px" class="text-center text-primary" ng-hide="trimPicked">{{selected.trim|filter:noEquals}}</h2>
+            </div>
+            <div class="col-md-5" ng-hide="imageHide" style="min-height:0px; margin-top:60px">
+
+                <div class="item" ng-repeat="url in imageUrls">
+                    <img alt="" src={{url}} style="display:block; margin:auto" />
+                </div>
+            </div>
+            <div class="col-md-7" id="dataDisplay">
+                <div class="col-xs-12">
+                    <h3 style="text-align:center">Details</h3>
+                </div>
+                <div class="col-xs-12 tableSeparator">
+                    <div class="col-xs-12 data">
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Fuel:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_fuel"]}}&nbsp;
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Drive Type:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["drive_type"]}}&nbsp;
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Transmission Type:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["transmission_type"]}} Transmission
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Engine size:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_cc"]/1000.0|number:1}} Liters
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Cylinders:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_num_cyl"]}} Cyl.
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Valves/Cylinder:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_valves_per_cyl"]}} Valves/Cyl
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Maximum Horsepower:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_power_ps"]}} HP
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Maximum Horsepower at:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_power_rpm"]}} RPM
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 data">
+                    </div>
+                </div>
+                <div class="col-xs-12 tableSeparator">
+                    <div class="col-xs-12 data">
+                        <div class="row">
+
+                            <div class=col-xs-6><h5 class="carData">Maximum Torque:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_torque_nm"]}} Nm
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Maximum Torque at:</h5></div><div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["engine_torque_rpm"]}} RPM
+                                </h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Height:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["height_mm"]*.0393701|number:0}}" Tall
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Length:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["length_mm"]*.0393701|number:0}}" Long
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Width:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["width_mm"]*.0393701|number:0}}" Wide
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Wheelbase:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["wheelbase"]*.0393701|number:0}}" Wheelbase
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=col-xs-6><h5 class="carData">Weight:</h5></div>
+                            <div class=col-xs-6>
+                                <h5 class="carDataField">
+                                    {{car["weight_kg"]*2.20462|number:0}} Lbs.
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div ng-hide="recallsHidden">
+                <div class="col-xs-12" id="recallDisplay" style="margin-top:20px">
+                    <div class="col-xs-12" style="text-align:center">
+                        <h3 style="text-align:center">Recalls for this vehicle</h3>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="panel-group" id="recallPanel">
+                            <div ng-repeat="object in recalls" class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title collapsed" data-toggle="collapse" data-parent="#recallPanel" href=#{{object.recall_number}}>{{object.recall_subject}}</a>
+                                </div>
+                                <div id={{object.recall_number}} class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <h5 class="carData">Date:</h5>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <h5 class="carDataField">{{object.recall_date}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <h5 class="carData">Defect in:</h5>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <h5 class="carDataField">{{object.component_description}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <h5 class="carData">Summary:</h5>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <h5 class="carDataField">{{object.defect_summary}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <h5 class="carData">Consequences:</h5>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <h5 class="carDataField">{{object.consequence_summary}}</h5>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                                <h5 class="carData">URL:</h5>
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <a ng-href="{{object.recall_url}}"><h5 class="carDataField">{{object.recall_url}}</h5></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+﻿<div ng-controller="registerController">
+    <form class="form-horizontal">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Register</legend>
+            <h4>{{message}}</h4>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="Email">Email Address</label>
+                <div class="controls">
+                    <input ng-model="registerData.Email" id="Email" name="Email" type="text" placeholder="name@example.com" class="input-large" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="Password">Password</label>
+                <div class="controls">
+                    <input ng-model="registerData.Password" id="Password" name="Password" type="password" placeholder="********" class="input-small" required="">
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="control-group">
+                <label class="control-label" for="ConfirmPassword">Confirm Password</label>
+                <div class="controls">
+                    <input ng-model="registerData.ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" type="password" placeholder="********" class="input-small" required="">
+
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="control-group">
+                <label class="control-label" for="singlebutton"></label>
+                <div class="controls">
+                    <button ng-click="register()" id="singlebutton" name="singlebutton" class="btn btn-primary">Register</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,21 @@
+﻿<div class="row">
+    <div class="col-sm-3">
+        <select ng-model="selectedYear" ng-options="year for year in years" ng-change="getMakes()" class="form-control">
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <select ng-model="selectedMake" ng-options="make for make in make" ng-change="getModels()" class="form-control" ng-disabled="selectedYear==''"></select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <select ng-model="selectedModel" ng-options="model for model in models" ng-change="getTrims()" class="form-control" ng-disabled="selectedMake==''"></select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3">
+        <select ng-model="selectedTrim" ng-options="trim for trim in trims" ng-change="getCars()" class="form-control" ng-disabled="selectedModel==''"></select>
+    </div>
+</div>

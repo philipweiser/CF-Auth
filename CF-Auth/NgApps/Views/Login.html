@@ -1,0 +1,49 @@
+﻿<div id="login" class="panel panel-default" ng-controller="LoginController">
+    <div class="panel-heading"><h2>Log In</h2></div>
+    <div class="panel-body">
+        <header class="text-align-center">
+            <div ng-hide="message == ''" ng-class="(isError) ? 'alert alert-danger' : ''" style="padding:5px; margin-bottom:-15px;">
+                <h4>{{message}}</h4>
+            </div>
+        </header>
+        <div>
+            <form class="form-login no-margin" role="form">
+                <fieldset>
+                    <div class="form-group no-margin">
+                        <label for="username">Email</label>
+
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon">
+                                <i class="fa fa-user"></i>
+                            </span>
+                            <input id="username" type="text" data-ng-model="loginData.userName" class="form-control input-lg"
+                                   placeholder="Username">
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon">
+                                <i class="fa fa-lock"></i>
+                            </span>
+                            <input id="password" type="password" data-ng-model="loginData.password" class="form-control input-lg"
+                                   placeholder="Password">
+                        </div>
+
+                    </div>
+                </fieldset>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-block btn-lg btn-danger" data-ng-click="login()">
+                        <span class="small-circle"><i class="fa fa-caret-right"></i></span>
+                        <small>Sign In</small>
+                    </button>
+                    <div class="forgot"><a class="forgot" href="">Forgot Username or Password?</a></div>
+                    <div class="forgot"><a class="forgot" href="#/register">Register a new account</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
