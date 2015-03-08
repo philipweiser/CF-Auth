@@ -1,4 +1,4 @@
-﻿angular.module('CarFinderApp', ['ngRoute', 'LocalStorageModule']);
+﻿angular.module('CarFinderApp', ['ngRoute', 'LocalStorageModule', 'ui.bootstrap']);
 
 angular.module('CarFinderApp').config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
 
