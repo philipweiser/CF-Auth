@@ -231,3 +231,5 @@ $RECYCLE.BIN/
 *.lnk
 *.csproj
 CF-Auth/packages.config
+CF-Auth/Web.config
+*.csproj

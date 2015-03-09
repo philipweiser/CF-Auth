@@ -20,18 +20,6 @@ public class CarController : ApiController
     private SqlDataReader rdr = null;
     public IEnumerable<string> GetYears()
     {
-        /*GetYears
-            GetMakesByYear(year)
-         * GetModelsByYearAndMake(year, make)
-         * GetTrimsByYearMakeAndModel(year,make,model)
-         * GetCarsByYear
-         * GetCarsByYearAndMke(year, make)
-         * GetCarsBYearMakeAndModel(year, make, model)
-         * GetCarsByYearMakeModelAndTrim(year, make, model, trim)
-         * GetMakes
-         * GetModels
-         * GetTrims
-         * */
         List<string> retval = new List<string>();
         using (conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
         {
@@ -122,8 +110,7 @@ public class CarController : ApiController
         using (conn = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
         {
             conn.Open();
-
-            SqlCommand cmd = new SqlCommand("GetTrimsByYearAndMakeAndModel", conn);
+            SqlCommand cmd = new SqlCommand("GetTrimsByYearMakeAndModel", conn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.Add("@year", SqlDbType.NVarChar);
             cmd.Parameters["@year"].Value = year;
@@ -160,7 +147,7 @@ public class CarController : ApiController
             conn.Open();
             if (trim != "" && trim != null)
             {
-                SqlCommand cmd = new SqlCommand("GetCarByYearAndMakeAndModelAndTrim", conn);
+                SqlCommand cmd = new SqlCommand("GetCarsByYearMakeModelAndTrim", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@year", SqlDbType.NVarChar);
                 cmd.Parameters["@year"].Value = year;
@@ -185,7 +172,7 @@ public class CarController : ApiController
             }
             else
             {
-                SqlCommand cmd = new SqlCommand("GetCarByYearAndMakeAndModel", conn);
+                SqlCommand cmd = new SqlCommand("GetCarsByYearMakeAndModel", conn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@year", SqlDbType.NVarChar);
                 cmd.Parameters["@year"].Value = year;
