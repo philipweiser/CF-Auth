@@ -27,7 +27,7 @@ public class CarController : ApiController
          * GetCarsByYear
          * GetCarsByYearAndMke(year, make)
          * GetCarsBYearMakeAndModel(year, make, model)
-         * GetCArsByYearMakeModelAndTrim(year, make, model, trim)
+         * GetCarsByYearMakeModelAndTrim(year, make, model, trim)
          * GetMakes
          * GetModels
          * GetTrims
